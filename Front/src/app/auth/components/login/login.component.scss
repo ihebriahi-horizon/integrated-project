@@ -1,0 +1,87 @@
+
+* {
+    font-family: 'Changa', serif;
+}
+
+.login-form {
+    text-align: center;
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+    margin: 90px auto;
+}
+
+.example-full-width {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+
+button.dark {
+    font-size: 1.1em;
+    margin-top: 10px;
+    width: 80px;
+    height: 35px;
+    background: black;
+    color: #fff;
+    border: 1px solid black;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+button.dark:hover {
+    color: black;
+}
+
+button.dark::after {
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+    content: "";
+    background: white;
+    position: absolute;
+    z-index: -1;
+    padding: 0.85em 0.75em;
+    display: block;
+    transition: all 0.35s;
+}
+
+
+button.dark:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 0.35s;
+}
+
+.mat-focused .mat-form-field-label, ::ng-deep  .mat-form-field-label {
+    color: rgb(48, 47, 49) !important;
+}
+
+.mat-form-field-ripple {
+    background-color: black !important;
+}
+
+.error-message{
+    font-size: 17px;
+    margin-top:  15px ;
+}
+.signup-link{
+    margin-top: 30px;
+    font-size: 15px;
+}
+.signup-link a{
+  color: #f44336;
+  text-decoration: none;
+  
+}
+.signup-link a:hover{
+  text-decoration: underline;
+}
+
+.example-button-row{
+    margin-top:10px;
+}

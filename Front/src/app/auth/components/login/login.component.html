@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<form class="login-form" [formGroup]="loginForm"  (ngSubmit)="onSubmit()" >
+    <mat-form-field class="example-full-width" hideRequiredMarker>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" name="email" formControlName="email" required>
+        <mat-error *ngIf="form['email'].invalid && form['email'].touched">
+            Please enter a valid email address.
+          </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" hideRequiredMarker>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Password"  name="password" formControlName="password" required>
+        <mat-error *ngIf="form['password'].invalid && form['password'].touched">
+            Password must be at least 5 characters long.
+          </mat-error>
+    </mat-form-field>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+    <div class="example-button-row">
+        <button class="dark" type="submit" [disabled]="loginForm.invalid">Login</button>
+    </div>
+    <div class="signup-link">Don't have an account? <a>Signup now</a></div>
+</form>
