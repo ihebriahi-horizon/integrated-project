@@ -1,0 +1,4 @@
+# GENERAL SETTINGS
+BRANCH=master
+COMPOSE_PATH_SEPARATOR=+
+COMPOSE_FILE=docker-compose.prod.yml+docker-compose.yml

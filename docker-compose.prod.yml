@@ -1,0 +1,97 @@
+# TODO FILL
+version: "3.7"
+
+services:
+  ############### Utility ###############
+  nginx:
+    restart: unless-stopped
+    build: ./nginx
+    ports:
+      - "80:80"
+      # - "443:443" todo: switch to traefik because nginx is stupid
+    volumes:
+      - ./nginx/logs/:/var/log/nginx/:rw
+      - ./backend/media/:/media/:ro
+      - ./backend/static/:/static/:ro
+    depends_on:
+      - backend
+      - frontend
+    env_file:
+      - .env
+    networks:
+      - horizon-net
+
+  backup:
+    image: prodrigestivill/postgres-backup-local
+    restart: always
+    expose:
+      - "${BACKUP_HEALTH_PORT}"
+    volumes:
+      - /var/opt/pgbackups/:/backups/
+    links:
+      - db
+    env_file:
+      - ./envs/db.env
+    environment:
+      - POSTGRES_HOST=db
+      - SCHEDULE="0 */6 * * *" # every 6 hours
+      - BACKUP_KEEP_DAYS=7
+      - BACKUP_KEEP_WEEKS=4
+      - BACKUP_KEEP_MONTHS=6
+      - HEALTHCHECK_PORT=${BACKUP_HEALTH_PORT}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - horizon-net
+
+  ############## MONITORING ###############
+  prometheus:
+    image: prom/prometheus:latest
+    expose:
+      - "${PROMETHEUS_PORT}"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    networks:
+      - horizon-net
+
+  grafana:
+    image: grafana/grafana-oss:latest
+    expose:
+      - "${GRAFANA_PORT}"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - horizon-net
+
+  cadvisor:
+    restart: unless-stopped
+    image: gcr.io/cadvisor/cadvisor
+    expose:
+      - "${CADVISOR_PORT}"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    networks:
+      - horizon-net
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    command:
+      - "--path.rootfs=/host"
+    pid: host
+    restart: unless-stopped
+    expose:
+      - "${NODE_EXPORTER_PORT}"
+    volumes:
+      - "/:/host:ro,rslave"
+    networks:
+      - horizon-net
