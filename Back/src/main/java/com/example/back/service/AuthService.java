@@ -1,13 +1,8 @@
-package com.example.back.service;
 
-import org.horizon.config.JwtService;
-import org.horizon.entity.AuthenticationResponse;
-import org.horizon.entity.Role;
-import org.horizon.entity.User;
-import org.horizon.payload.LoginDto;
-import org.horizon.payload.SignUpDto;
-import org.horizon.repository.RoleRepository;
-import org.horizon.repository.UserRepository;
+import com.example.back.config.JwtService;
+import com.example.back.payload.LoginDto;
+import com.example.back.payload.SignUpDto;
+import com.example.back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +22,7 @@ public class AuthService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private RoleRepository roleRepository;
+	private roleRepository roleRepository;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
