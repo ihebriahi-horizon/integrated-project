@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {GMapModule} from 'primeng/gmap';
 
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -22,13 +23,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     MatSliderModule,
     MatIconModule,
     MatCardModule,
+    GMapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
