@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-// import { CartComponent } from './../cart/cart.component';
-// import { CartServicesService } from 'src/app/services/cart-services.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartComponent } from 'src/app/components/cart/cart.component';
+import { CartServicesService } from '../../services/cart-services.service';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +14,10 @@ export class HeaderComponent implements OnInit {
   name: any;
 
   constructor(public cartModal: MatDialog,
-    // private cartService: CartServicesService,
+    private cartService: CartServicesService,
     private router: Router, private route: ActivatedRoute
   ) {
-    // this.cartService.getCart()
+    this.cartService.getCart()
   }
 
 
@@ -29,16 +29,16 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  // openCart() {
-  //   this.cartModal.open(CartComponent)
-  // }
+  openCart() {
+    this.cartModal.open(CartComponent)
+  }
 
-  // search(searchValue: string) {
-  //   this.router.navigate(['/search-products'], { queryParams: { name: searchValue } });
-  // }
+  search(searchValue: string) {
+    this.router.navigate(['/search-products'], { queryParams: { name: searchValue } });
+  }
 
-  // cartProductsNumber():number{
-  //   return this.cartService.cartProductsNumber()
-  // }
+  cartProductsNumber():number{
+    return this.cartService.cartProductsNumber()
+  }
 
 }

@@ -27,6 +27,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { TopComponent } from './components/top/top.component';
 import { GMapModule } from 'primeng/gmap';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GMapModule } from 'primeng/gmap';
     AboutComponent,
     ProductsComponent,
     TopComponent,
-    NewCollectionComponent
+    NewCollectionComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

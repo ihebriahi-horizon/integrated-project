@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="d-flex justify-content-between" *ngIf="cartData.length !== 0">
+    <h1 class="fs-2 fw-light" mat-dialog-title>My Cart</h1>
+    <span>
+      <strong class="btn btn-sm btn-outline-secondary">Total: {{ totalFinal }} DT
+      </strong></span>
+  </div>
+  <hr />
+  <div mat-dialog-content>
+    <ng-container *ngIf="cartData.length !== 0">
+      <form method="post">
+        <table class="table-responsive">
+          <thead>
+            <tr>
+              <th class="large-th">Product Name</th>
+              <th>Size</th>
+              <th>Price</th>
+              <th colspan="2">Quantity</th>
+              <th>Total</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cart of cartData">
+              <td>{{ cart.name }}</td>
+              <td>{{ cart.size }}</td>
+              <td>{{ cart.price }} DT</td>
+              <td>{{ cart.quant }}</td>
+              <td>
+                <button type="button" (click)="btnplus(cart._id)" class="btn">
+                  <i class="bi bi-plus-square-fill"></i>
+                </button>
+                <button type="button" (click)="btnmminus(cart._id)" class="btn">
+                  <i class="bi bi-dash-square-fill"></i>
+                </button>
+              </td>
+              <td>{{ cart.total }}</td>
+              <td>,
+                <button type="submit" class="btn btn-sm btn-danger" (click)="deleteProduct(cart._id, cart.name, cart.price, cart.size, cart.quant, cart.total)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </ng-container>
+
+    <!-- When the cart is empty -->
+    <ng-container *ngIf="cartData.length === 0">
+      <div class="emptyCart d-flex flex-column align-items-center">
+        <strong>
+          <h1 class="fs-2 fw-light" mat-dialog-title>My Cart</h1>
+        </strong>
+        <i class="bi bi-cart-x-fill fs-2 fw-light"></i>
+        <br />
+        <h3>Your Cart is Empty!</h3>
+        <a class="btn btn-sm btn-danger" href="/">Go back to Store</a>
+      </div>
+    </ng-container>
+
+
+    <div mat-dialog-actions *ngIf="cartData.length !== 0">
+      <button class="btn btn-sm btn-secondary" mat-button mat-dialog-close>
+        Close
+      </button>
+    </div>
+  </div>
+</div>
