@@ -7,7 +7,7 @@ COPY package*.json ./
 
 RUN npm ci
 
-COPY . .
+COPY ./Front .
 
 RUN npm run build
 
