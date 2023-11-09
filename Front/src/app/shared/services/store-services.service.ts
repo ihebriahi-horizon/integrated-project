@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/services/auth-service.service';
 })
 export class StoreServicesService {
 
-  private readonly url = 'http://localhost:8090/api';
+  private readonly url = 'http://localhost:8080/api';
   
   status!: string;
   errorMessage: any;
