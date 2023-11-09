@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+
+<div class="container mb-3 text-center mt-5">
+    <h2 id="nova" class="fs-2 fw-light">ABOUT PAGE</h2>
+</div>
+
+<!-- About Us Section -->
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 about-text">
+                <h2>About Us</h2>
+                <p>
+                    Welcome to our online store! We are a leading e-commerce website dedicated to providing high-quality
+                    products at affordable prices. Our extensive range includes everything from fashion, beauty, and
+                    accessories, to electronics, homewares, and much more. We are committed to providing an enjoyable
+                    shopping experience, and our user-friendly website makes it easy to find what you're looking for.
+                    With fast shipping and secure payment options, you can shop with confidence knowing that your order
+                    will be delivered to your doorstep in no time. Our customer service team is also here to assist you
+                    with any queries you may have. Thank you for choosing our website, and we look forward to serving
+                    you!</p>
+            </div>
+            <div class="col-md-6">
+                <img src="/assets/images/pages/about.jpg" alt="About Us" class="img-fluid about-pic" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container mb-3 text-center mt-5">
+    <h2 id="nova" class="fs-4 fw-light">OUR STORES</h2>
+</div>
+
+<div class="map">
+    <p-gmap (onMapReady)="setMap($event)" [options]="options" [overlays]="overlays"
+        [style]="{'width':'70%','height':'500px','margin-left':'18%'}"></p-gmap>
+</div>
+
+<app-footer></app-footer>
