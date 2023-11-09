@@ -1,0 +1,33 @@
+#about {
+    margin-bottom: 70px;
+}
+
+.about-text p {
+    font-size: 16px;
+}
+
+.map {
+    padding-bottom: 130px;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .about-pic {
+        margin-top: 80px;
+        height: 230px;
+    }
+
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .about-pic {
+        margin-top: 38px;
+    }
+
+}
+
+@media (min-width: 1400px) {
+    .about-text {
+        margin-top: 40px;
+    }
+
+}
