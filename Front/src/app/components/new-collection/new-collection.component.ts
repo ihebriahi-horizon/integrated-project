@@ -1,9 +1,9 @@
-import { Cart } from './../../models/cart';
 import { Observable } from 'rxjs';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { StoreServicesService } from 'src/app/services/store-services.service';
 import { NgForm } from '@angular/forms';
-import { CartServicesService } from 'src/app/services/cart-services.service';
+import { Cart } from 'src/app/shared/interfaces/cart';
+import { CartServicesService } from 'src/app/shared/services/cart-services.service';
+import { StoreServicesService } from 'src/app/shared/services/store-services.service';
 
 @Component({
   selector: 'app-new-collection',
