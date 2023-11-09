@@ -1,19 +1,21 @@
 package com.example.back.service;
 
-import org.horizon.config.JwtService;
-import org.horizon.entity.AuthenticationResponse;
-import org.horizon.entity.Role;
-import org.horizon.entity.User;
-import org.horizon.payload.LoginDto;
-import org.horizon.payload.SignUpDto;
-import org.horizon.repository.RoleRepository;
-import org.horizon.repository.UserRepository;
+import com.example.back.config.JwtService;
+import com.example.back.entity.AuthenticationResponse;
+import com.example.back.entity.Role;
+import com.example.back.entity.User;
+import com.example.back.payload.LoginDto;
+import com.example.back.payload.SignUpDto;
+import com.example.back.repository.RoleRepository;
+import com.example.back.repository.UserRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Service
 public class AuthService {
 
@@ -42,6 +44,7 @@ public class AuthService {
 			user.setUserAddress(request.getUserAddress());
 			user.setUserGender(request.getUserGender());
 
+			log.error(roleRepository.findByRoleName("User").get());
 			Role roles = roleRepository.findByRoleName("User").get();
 			user.setRole(roles);
 			userRepository.save(user);

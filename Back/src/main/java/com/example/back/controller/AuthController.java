@@ -1,10 +1,10 @@
 
 package com.example.back.controller;
 
-import org.horizon.entity.AuthenticationResponse;
-import org.horizon.payload.LoginDto;
-import org.horizon.payload.SignUpDto;
-import org.horizon.service.AuthService;
+import com.example.back.entity.AuthenticationResponse;
+import com.example.back.payload.LoginDto;
+import com.example.back.payload.SignUpDto;
+import com.example.back.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

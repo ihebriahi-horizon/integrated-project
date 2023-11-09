@@ -1,8 +1,8 @@
 
 package com.example.back.config;
 
+import com.example.back.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.horizon.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

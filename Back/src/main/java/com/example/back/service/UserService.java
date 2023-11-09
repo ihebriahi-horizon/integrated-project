@@ -1,7 +1,7 @@
 package com.example.back.service;
 
-import org.horizon.entity.User;
-import org.horizon.repository.UserRepository;
+import com.example.back.entity.User;
+import com.example.back.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
