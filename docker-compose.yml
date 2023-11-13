@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: front/Dockerfile
+      dockerfile: Front/Dockerfile
     env_file:
       - .env
     ports:
