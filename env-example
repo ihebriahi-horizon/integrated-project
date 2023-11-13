@@ -1,0 +1,14 @@
+# GENERAL SETTINGS
+BRANCH=main
+COMPOSE_PATH_SEPARATOR=+
+COMPOSE_FILE=docker-compose.prod.yml+docker-compose.yml
+
+# postgres 
+POSTGRES_USER=horizon_admin
+POSTGRES_PASSWORD=this_string_is_strong
+POSTGRES_DB=horizon_homework
+
+# backend
+SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/horizon_homework
+SPRING_DATASOURCE_USERNAME=horizon_admin
+SPRING_DATASOURCE_PASSWORD=this_string_is_strong____duplicating_this_because_Im_lazy

@@ -16,40 +16,43 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.example.back.repository.UserRepository;
+
 @Configuration
 @RequiredArgsConstructor
 
 public class ApplicationConfig {
 
 	@Autowired
-	private UserRepository userRepository ;
+	private UserRepository userRepository;
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-    	return new UserDetailsService() {
-			
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsService() {
+
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				return userRepository.findByUserEmail(username).orElseThrow(()-> new UsernameNotFoundException("User not found"));
+				return (UserDetails) userRepository.findByUserEmail(username)
+						.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 			}
 		};
-    }
-    
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-    	DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    	authProvider.setUserDetailsService(userDetailsService());
-    	authProvider.setPasswordEncoder(passwordEncoder());
-    	return authProvider;
-    }
+	}
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService());
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
+	}
+
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
 	}
-    
-    @Bean
-    public PasswordEncoder passwordEncoder() {
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 

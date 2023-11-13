@@ -1,13 +1,12 @@
-package com.example.back.service;
 
 import com.example.back.config.JwtService;
+import com.example.back.payload.LoginDto;
+import com.example.back.payload.SignUpDto;
+import com.example.back.repository.UserRepository;
 import com.example.back.entity.AuthenticationResponse;
 import com.example.back.entity.Role;
 import com.example.back.entity.User;
-import com.example.back.payload.LoginDto;
-import com.example.back.payload.SignUpDto;
 import com.example.back.repository.RoleRepository;
-import com.example.back.repository.UserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

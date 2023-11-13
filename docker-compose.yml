@@ -1,0 +1,94 @@
+version: "3.8"
+
+#       ___           ___           ___                       ___           ___           ___
+#      /__/\         /  /\         /  /\        ___          /  /\         /  /\         /__/\
+#      \  \:\       /  /::\       /  /::\      /  /\        /  /::|       /  /::\        \  \:\
+#       \__\:\     /  /:/\:\     /  /:/\:\    /  /:/       /  /:/:|      /  /:/\:\        \  \:\
+#   ___ /  /::\   /  /:/  \:\   /  /:/~/:/   /__/::\      /  /:/|:|__   /  /:/  \:\   _____\__\:\
+#  /__/\  /:/\:\ /__/:/ \__\:\ /__/:/ /:/___ \__\/\:\__  /__/:/ |:| /\ /__/:/ \__\:\ /__/::::::::\
+#  \  \:\/:/__\/ \  \:\ /  /:/ \  \:\/:::::/    \  \:\/\ \__\/  |:|/:/ \  \:\ /  /:/ \  \:\~~\~~\/
+#   \  \::/       \  \:\  /:/   \  \::/~~~~      \__\::/     |  |:/:/   \  \:\  /:/   \  \:\  ~~~
+#    \  \:\        \  \:\/:/     \  \:\          /__/:/      |  |::/     \  \:\/:/     \  \:\
+#     \  \:\        \  \::/       \  \:\         \__\/       |  |:/       \  \::/       \  \:\
+#      \__\/         \__\/         \__\/                     |__|/         \__\/         \__\/
+#
+# LEAVE IT BETTER THEN YOU FOUND IT.
+
+services:
+  ############### Datastores ###############
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis-data:/data
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - horizon-net
+  db:
+    image: postgres:15-alpine
+    user: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - horizon-net
+
+  ############### Our apps ###############
+  backend:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Back/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    networks:
+      - horizon-net
+
+  frontend:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: front/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - 80:80
+    volumes:
+      - .:/app
+    depends_on:
+      - backend
+    networks:
+      - horizon-net
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+
+networks:
+  horizon-net:
