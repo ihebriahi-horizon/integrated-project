@@ -85,10 +85,6 @@ volumes:
     driver: local
   redis-data:
     driver: local
-  prometheus-data:
-    driver: local
-  grafana-data:
-    driver: local
 
 networks:
   horizon-net:

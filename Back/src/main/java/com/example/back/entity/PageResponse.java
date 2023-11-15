@@ -1,19 +1,18 @@
 package com.example.back.entity;
 
-
 import java.util.List;
 
-public class PageResponse  {
+public class PageResponse {
 
 	private List<Product> content;
-	  private int totalPages;
-	  private long totalElements;
-	  
-	  public PageResponse(List<Product> content, int totalPages, Long totalElements) {
-	    this.content = content;
-	    this.totalPages = totalPages;
-	    this.totalElements = totalElements;
-	  }
+	private int totalPages;
+	private long totalElements;
+
+	public PageResponse(List<Product> content, int totalPages, Long totalElements) {
+		this.content = content;
+		this.totalPages = totalPages;
+		this.totalElements = totalElements;
+	}
 
 	public List<Product> getContent() {
 		return content;
@@ -38,6 +37,5 @@ public class PageResponse  {
 	public void setTotalPages(int totalPages) {
 		this.totalPages = totalPages;
 	}
-	  
-	  
+
 }

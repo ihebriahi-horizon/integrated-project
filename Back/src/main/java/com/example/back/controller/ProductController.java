@@ -39,7 +39,7 @@ public class ProductController {
 		 * dataPage = productService.getProductsByName( name, PageRequest.of(page,
 		 * size), productMinPrice, productMaxPrice); }
 		 */
-		if(gender==null) {
+		if (gender == null) {
 			System.out.println("gender is null");
 		}
 		dataPage = productService.getProductsByGender(gender, name, PageRequest.of(page, size), productMinPrice,
@@ -77,7 +77,7 @@ public class ProductController {
 	public Set<String> getColors() {
 		return productService.getProductColors();
 	}
- 
+
 	@GetMapping("price/min")
 	public Double getMinProductPrice() {
 		return productService.getMinProductPrice();

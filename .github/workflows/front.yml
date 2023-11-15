@@ -42,4 +42,4 @@ jobs:
           context: .
           file: Front/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/${{ github.ref }}:latest
+          tags: ghcr.io/${{ github.repository }}/${{ github.ref }}_front:latest
