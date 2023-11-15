@@ -1,6 +1,5 @@
 package com.example.back.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,9 +17,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="user")
-@Table(name="user")
-public class User implements UserDetails{
+@Entity(name = "user")
+@Table(name = "user")
+public class User extends org.springframework.boot.autoconfigure.security.SecurityProperties.User
+		implements UserDetails {
 
 	/**
 	 * 
@@ -29,34 +29,34 @@ public class User implements UserDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@Column(name = "user_id")
 	private int userId;
-	
-	@Column(name="user_email")
+
+	@Column(name = "user_email")
 	private String userEmail;
-	
-	@Column(name="user_password")
+
+	@Column(name = "user_password")
 	private String userPassword;
-	
-	@Column(name="user_firstname")
+
+	@Column(name = "user_firstname")
 	private String userFirstname;
-	
-	@Column(name="user_lastname")
+
+	@Column(name = "user_lastname")
 	private String userLastname;
-	
-	@Column(name="user_address")
+
+	@Column(name = "user_address")
 	private String userAddress;
-	
-	@Column(name="user_gender")
+
+	@Column(name = "user_gender")
 	private byte userGender;
-	
-	@Column(name="user_age")
+
+	@Column(name = "user_age")
 	private int userAge;
 
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name="role_id", referencedColumnName = "role_id", nullable =  false)    
-    private Role role;
+	@JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false)
+	private Role role;
 
 	public int getUserId() {
 		return userId;
@@ -149,7 +149,7 @@ public class User implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return userEmail;
+		return userFirstname;
 	}
 
 	@Override
@@ -171,6 +171,4 @@ public class User implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
-	
 }

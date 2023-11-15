@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: front/Dockerfile
+      dockerfile: Front/Dockerfile
     env_file:
       - .env
     ports:
@@ -84,10 +84,6 @@ volumes:
   postgres-data:
     driver: local
   redis-data:
-    driver: local
-  prometheus-data:
-    driver: local
-  grafana-data:
     driver: local
 
 networks:

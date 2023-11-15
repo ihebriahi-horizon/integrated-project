@@ -13,6 +13,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=builder /app/target/your-spring-boot-app-3.1.5.jar ./app.jar
+COPY --from=builder /app/target/*.jar ./app.jar
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "./app.jar"]
