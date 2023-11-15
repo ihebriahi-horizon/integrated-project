@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/search-products'], { queryParams: { name: searchValue } });
   }
 
-  cartProductsNumber():number{
+  cartProductsNumber(): number {
     return this.cartService.cartProductsNumber()
   }
 

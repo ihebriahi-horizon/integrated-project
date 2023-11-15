@@ -55,7 +55,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/app
+      - ./Back:/app
     depends_on:
       redis:
         condition: service_healthy
@@ -74,7 +74,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - .:/app
+      - ./Front:/app
     depends_on:
       - backend
     networks:

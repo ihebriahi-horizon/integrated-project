@@ -1,11 +1,10 @@
-# Stage 1: Build the Angular app
 FROM node:14 as builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./Front/package*.json ./
 
-RUN npm ci
+RUN npm i
 
 COPY ./Front .
 
