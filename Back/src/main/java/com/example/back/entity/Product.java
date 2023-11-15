@@ -30,8 +30,8 @@ public class Product {
 
 	@Column(name = "product_color")
 	private String productColor;
-	
-	@Column(name = "product_add_date", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP",insertable=false, updatable=false)
+
+	@Column(name = "product_add_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
 	private Timestamp productAddDate;
 
 	public Product() {
@@ -120,7 +120,5 @@ public class Product {
 				+ productImagePath + ", productPrice=" + productPrice + ", productFor=" + productFor + ", productType="
 				+ productType + ", productColor=" + productColor + ", productAddDate=" + productAddDate + "]";
 	}
-
-	
 
 }

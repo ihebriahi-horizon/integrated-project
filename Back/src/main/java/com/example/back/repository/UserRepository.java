@@ -1,6 +1,6 @@
 package com.example.back.repository;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import com.example.back.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

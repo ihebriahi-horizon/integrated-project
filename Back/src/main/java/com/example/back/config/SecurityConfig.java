@@ -20,38 +20,38 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 public class SecurityConfig {
 
-	@Autowired
-	private JwtAuthenticationFilter jwtAuthFilter;
-	
-	@Autowired
-	private AuthenticationProvider authenticationProvider;
-	
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthFilter;
 
-	@Bean
+    @Autowired
+    private AuthenticationProvider authenticationProvider;
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-     
-    	http
-    	.cors()
-    	.and()
-    	.csrf()
-    	.disable()
-        .authorizeHttpRequests()
-        .requestMatchers(HttpMethod.GET, "/api/products/**")
-        .permitAll()
-        .requestMatchers(HttpMethod.POST, "/api/auth/**")
-        .permitAll()
-        .anyRequest() 
-        .authenticated()
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(authenticationProvider)
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        http
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+                .authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/api/products/**")
+                .permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/auth/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

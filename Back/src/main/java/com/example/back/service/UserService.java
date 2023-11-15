@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.back.repository.UserRepository;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -21,11 +19,11 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	public org.springframework.boot.autoconfigure.security.SecurityProperties.User getUser(int userId) {
+	public User getUser(int userId) {
 		return userRepo.findById(userId).get();
 	}
 
-	public List<org.springframework.boot.autoconfigure.security.SecurityProperties.User> getUsers() {
+	public List<User> getUsers() {
 		return StreamSupport.stream(userRepo.findAll().spliterator(), false)
 				.collect(Collectors.toList());
 	}
