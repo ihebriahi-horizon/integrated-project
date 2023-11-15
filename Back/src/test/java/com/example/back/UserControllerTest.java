@@ -18,7 +18,7 @@ import com.example.back.entity.User;
 import com.example.back.service.UserService;
 
 public class UserControllerTest {
-    
+
     private UserController userController;
 
     @Mock
@@ -52,10 +52,13 @@ public class UserControllerTest {
         assertEquals(expectedUsers, actualUsers);
         verify(userService).getUsers();
     }
+
     @Test
     public void testAddUser() {
         User user = mock(User.class);
+
         userController.addUser(user);
+
         verify(userService).addUser(user);
     }
 }
