@@ -3,7 +3,6 @@ package com.example.back.controller;
 import com.example.back.entity.PageResponse;
 import com.example.back.entity.Product;
 import com.example.back.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ import java.util.Set;
 public class ProductController {
 
 	private final ProductService productService;
-	
 
 	public ProductController(ProductService productService) {
 		this.productService = productService;
