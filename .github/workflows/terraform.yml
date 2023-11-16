@@ -1,14 +1,13 @@
 name: "Terraform"
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths-ignore:
       # prevent loops
       - "**.tfstate"
       - "**.tfstate.encrypted"
-  pull_request:
 permissions:
   contents: read
   pull-requests: write

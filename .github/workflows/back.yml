@@ -1,12 +1,8 @@
 name: Back Microservice CI/CD
 on:
-  push:
+  pull_request:
     paths:
       - "Back/**"
-    branches:
-      - develop
-      - main
-  pull_request:
     branches:
       - develop
       - main
@@ -18,8 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Create env file
+        run: cp env-example .env
+        working-directory: ${{ github.workspace }}
+      
       - name: Start Docker Compose
-        run: echo "I don't want to mess with java, please add tests here"
+        run: docker-compose run --rm backend mvn test
+        working-directory: ${{ github.workspace }}
 
   push_to_registry:
     needs: unit_test
