@@ -1,7 +1,7 @@
 # GENERAL SETTINGS
 BRANCH=main
 COMPOSE_PATH_SEPARATOR=+
-COMPOSE_FILE=docker-compose.prod.yml+docker-compose.yml
+COMPOSE_FILE=docker-compose.yml
 
 # postgres 
 POSTGRES_USER=horizon_admin

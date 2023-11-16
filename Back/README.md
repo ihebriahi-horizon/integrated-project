@@ -3,7 +3,7 @@
 
 ```ssh
 # project root
-$ cd /integrated-project 
+$ cd /integrated-project && cp env-example .env
 
 $ docker compose up -d 
 
