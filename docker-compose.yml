@@ -55,6 +55,8 @@ services:
       dockerfile: Back/Dockerfile
     env_file:
       - .env
+    volumes:
+      - ./Back:/app
     ports:
       - 8080:8080
     depends_on:
@@ -72,6 +74,8 @@ services:
       dockerfile: Front/Dockerfile
     env_file:
       - .env
+    volumes:
+      - ./Front:/app
     ports:
       - 80:80
     depends_on:
