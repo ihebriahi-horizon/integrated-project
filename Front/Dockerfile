@@ -1,12 +1,12 @@
-FROM node:14 as builder
+FROM node:16 as builder
 
 WORKDIR /app
 
-COPY ./Front/package*.json ./
+COPY ./Front/ ./
 
-RUN npm i
+RUN npm set strict-ssl false
 
-COPY ./Front .
+RUN npm i --legacy-peer-deps
 
 RUN npm run build
 

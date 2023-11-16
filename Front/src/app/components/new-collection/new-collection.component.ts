@@ -39,7 +39,7 @@ export class NewCollectionComponent implements OnInit {
 
   }
 
-  addProductToCart(_id: number, name: string, price: number, size: string, quant: number, total: number) {
+  addProductToCart(_id: number, name: string, price: number, size: number, quant: number, total: number) {
     const products: Cart = { _id, name, price, size, quant, total }
     this.cartService.addToCart(products)
 

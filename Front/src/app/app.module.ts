@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
 import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -14,9 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -26,8 +25,30 @@ import { AboutComponent } from './components/about/about.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { TopComponent } from './components/top/top.component';
-import { GMapModule } from 'primeng/gmap';
 import { CartComponent } from './components/cart/cart.component';
+
+const routes: Routes = [
+
+  {
+    path: 'products',
+    component: ProductsComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
+  ,
+  {
+    path: 'about',
+    component: AboutComponent
+  }
+  ,
+  {
+    path: '',
+    component: NewCollectionComponent
+  }
+];
+
 
 @NgModule({
   declarations: [
@@ -42,8 +63,8 @@ import { CartComponent } from './components/cart/cart.component';
     CartComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
@@ -58,8 +79,7 @@ import { CartComponent } from './components/cart/cart.component';
     MatSidenavModule,
     MatSliderModule,
     MatIconModule,
-    MatCardModule,
-    GMapModule
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

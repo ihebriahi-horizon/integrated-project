@@ -41,7 +41,7 @@ export class CartComponent implements OnInit {
       return p._id === _id;
     });
 
-    if (produto!.quant  > 1) {
+    if (produto!.quant > 1) {
 
       produto!.quant = produto!.quant - 1;
       this.quantidade = produto!.quant * produto!.price;
@@ -61,15 +61,15 @@ export class CartComponent implements OnInit {
     }
   }
 
-  deleteProduct(_id: number, name: string, price: number, size: string, quant: number, total: number) {
+  deleteProduct(_id: number, name: string, price: number, size: number, quant: number, total: number) {
     const products: Cart = { _id, name, price, size, quant, total }
-    
+
     this.cartData = this.cartData.filter((i: any) => i._id != _id);
     let produto = this.cartData.find((p: any) => {
       return p._id === _id;
     });
     this.cartService.deleteFromCart(products);
     this.totalFinal = this.totalFinal - produto!?.total;
-    
+
   }
 }
