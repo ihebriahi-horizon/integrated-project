@@ -1,13 +1,12 @@
-# Stage 1: Build the Angular app
-FROM node:14 as builder
+FROM node:16 as builder
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY ./Front/ ./
 
-RUN npm ci
+RUN npm set strict-ssl false
 
-COPY ./Front .
+RUN npm i --legacy-peer-deps
 
 RUN npm run build
 

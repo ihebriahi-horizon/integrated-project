@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {GMapModule} from 'primeng/gmap';
 
 @Component({
   selector: 'app-about',
@@ -18,7 +17,7 @@ export class AboutComponent {
   setMap(event) {
     this.map = event.map;
   }
-  
+
   ngOnInit(): void {
     let bounds = new google.maps.LatLngBounds();
 

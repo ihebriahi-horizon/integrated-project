@@ -12,22 +12,18 @@ export class CartServicesService {
 
   constructor(private http: HttpClient) { }
 
-  addToCart(product: Cart) {
+  addToCart(product: Cart): void {
+    if (product?.size >= 0)
+      throw new Error("product quantity is undefined!")
 
-    if (product.size != "" && product.size!=null && product.size!=undefined) {
-      const existingProduct = this.cartData.find(p => p._id === product._id);
-      if (existingProduct) {
-        if (existingProduct.size === product.size) {
-          existingProduct.quant += product.quant;
-          existingProduct.total += product.total;
-        } else {
-          this.cartData.push(product);
-        }
-      } else {
-        this.cartData.push(product);
-      }
+    const existingProduct = this.cartData.find(p => p._id === product._id);
+    if (existingProduct == undefined || existingProduct.size === product.size) {
+      this.cartData.push(product);
+      return;
     }
-    
+
+    existingProduct.quant += product.quant;
+    existingProduct.total += product.total;
   }
 
   getCart() {
@@ -41,5 +37,4 @@ export class CartServicesService {
   cartProductsNumber(): number {
     return this.cartData.length;
   }
-
 }

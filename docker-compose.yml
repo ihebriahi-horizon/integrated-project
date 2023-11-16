@@ -30,10 +30,12 @@ services:
     networks:
       - horizon-net
   db:
+    restart: unless-stopped
     image: postgres:15-alpine
-    user: postgres
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
     expose:
       - 5432
     healthcheck:
@@ -54,8 +56,6 @@ services:
       - .env
     ports:
       - 8080:8080
-    volumes:
-      - .:/app
     depends_on:
       redis:
         condition: service_healthy
@@ -73,8 +73,6 @@ services:
       - .env
     ports:
       - 80:80
-    volumes:
-      - .:/app
     depends_on:
       - backend
     networks:
