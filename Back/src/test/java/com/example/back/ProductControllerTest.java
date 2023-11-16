@@ -62,4 +62,43 @@ public class ProductControllerTest {
         assertEquals(expectedPage.getTotalElements(), actualPageResponse.getTotalElements());
         verify(productService).getProductsByGender(gender, name, PageRequest.of(page, size), minPrice, maxPrice, colors, type);
     }
+    @Test
+    public void testGetProduct() {
+        int productId = 1;
+        Product expectedProduct = mock(Product.class);
+        when(productService.getProduct(productId)).thenReturn(expectedProduct);
+
+        Product actualProduct = productController.getProducts(productId);
+
+        assertEquals(expectedProduct, actualProduct);
+        verify(productService).getProduct(productId);
+    }
+
+    @Test
+    public void testAddProduct() {
+        Product product = mock(Product.class);
+
+        productController.addProduct(product);
+
+        verify(productService).addProduct(product);
+    }
+
+    @Test
+    public void testUpdateProduct() {
+        int productId = 1;
+        Product product = mock(Product.class);
+
+        productController.updateProduct(productId, product);
+
+        verify(productService).updateProduct(productId, product);
+    }
+
+    @Test
+    public void testDeleteProduct() {
+        int productId = 1;
+
+        productController.deleteProduct(productId);
+
+        verify(productService).deleteProduct(productId);
+    }
 }
