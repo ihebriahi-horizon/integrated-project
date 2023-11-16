@@ -8,5 +8,13 @@ you need to create a .env file under this directory (checkout: env-example) ... 
 docker-compose up -d
 ```
 
-Front : npm i <br>
-then : npm i primeng@15.2.0 --force
+<h3> Front : </h3>
+
+```sh
+npm i
+```
+then :
+```sh
+npm i primeng@15.2.0 --force
+```
+ 
