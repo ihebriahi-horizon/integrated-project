@@ -14,8 +14,12 @@ import java.util.Set;
 @RequestMapping("/api/products")
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
+	
+
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
 
 	@GetMapping("")
 	public Page<Product> getProducts(@RequestParam(name = "page", required = false, defaultValue = "0") int page,
