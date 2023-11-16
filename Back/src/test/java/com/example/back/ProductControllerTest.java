@@ -25,12 +25,14 @@ public class ProductControllerTest {
     private ProductController productController;
     @Mock
     private ProductService productService;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         productController = new ProductController(productService);
     }
-     @Test
+
+    @Test
     public void testGetProducts() {
         int page = 0;
         int size = 0;
@@ -42,6 +44,7 @@ public class ProductControllerTest {
         assertEquals(expectedPage, actualPage);
         verify(productService).getProducts(page, size);
     }
+
     @Test
     public void testGetProductsWithSearchParams() {
         String gender = "male";
@@ -53,15 +56,19 @@ public class ProductControllerTest {
         Set<String> colors = new HashSet<>(Collections.singletonList("red"));
         String type = "t-shirt";
         Page<Product> expectedPage = mock(Page.class);
-        when(productService.getProductsByGender(gender, name, PageRequest.of(page, size), minPrice, maxPrice, colors, type)).thenReturn(expectedPage);
+        when(productService.getProductsByGender(gender, name, PageRequest.of(page, size), minPrice, maxPrice, colors,
+                type)).thenReturn(expectedPage);
 
-        PageResponse actualPageResponse = productController.getProducts(gender, name, page, size, minPrice, maxPrice, colors, type);
+        PageResponse actualPageResponse = productController.getProducts(gender, name, page, size, minPrice, maxPrice,
+                colors, type);
 
         assertEquals(expectedPage.getContent(), actualPageResponse.getContent());
         assertEquals(expectedPage.getTotalPages(), actualPageResponse.getTotalPages());
         assertEquals(expectedPage.getTotalElements(), actualPageResponse.getTotalElements());
-        verify(productService).getProductsByGender(gender, name, PageRequest.of(page, size), minPrice, maxPrice, colors, type);
+        verify(productService).getProductsByGender(gender, name, PageRequest.of(page, size), minPrice, maxPrice, colors,
+                type);
     }
+
     @Test
     public void testGetProduct() {
         int productId = 1;
@@ -101,6 +108,7 @@ public class ProductControllerTest {
 
         verify(productService).deleteProduct(productId);
     }
+
     @Test
     public void testGetTypes() {
         Set<String> expectedTypes = new HashSet<>(Collections.singletonList("t-shirt"));
