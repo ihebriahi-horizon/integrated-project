@@ -101,4 +101,47 @@ public class ProductControllerTest {
 
         verify(productService).deleteProduct(productId);
     }
+    @Test
+    public void testGetTypes() {
+        Set<String> expectedTypes = new HashSet<>(Collections.singletonList("t-shirt"));
+        when(productService.getProductTypes()).thenReturn(expectedTypes);
+
+        Set<String> actualTypes = productController.getTypes();
+
+        assertEquals(expectedTypes, actualTypes);
+        verify(productService).getProductTypes();
+    }
+
+    @Test
+    public void testGetColors() {
+        Set<String> expectedColors = new HashSet<>(Collections.singletonList("red"));
+        when(productService.getProductColors()).thenReturn(expectedColors);
+
+        Set<String> actualColors = productController.getColors();
+
+        assertEquals(expectedColors, actualColors);
+        verify(productService).getProductColors();
+    }
+
+    @Test
+    public void testGetMinProductPrice() {
+        Double expectedMinPrice = 0.0;
+        when(productService.getMinProductPrice()).thenReturn(expectedMinPrice);
+
+        Double actualMinPrice = productController.getMinProductPrice();
+
+        assertEquals(expectedMinPrice, actualMinPrice);
+        verify(productService).getMinProductPrice();
+    }
+
+    @Test
+    public void testGetMaxProductPrice() {
+        Double expectedMaxPrice = 100.0;
+        when(productService.getMaxProductPrice()).thenReturn(expectedMaxPrice);
+
+        Double actualMaxPrice = productController.getMaxProductPrice();
+
+        assertEquals(expectedMaxPrice, actualMaxPrice);
+        verify(productService).getMaxProductPrice();
+    }
 }
