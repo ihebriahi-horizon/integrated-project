@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+ redis.conf: |
+   appendonly yes
+   save 900 1
+   save 300 10
+   save 60 10000
+metadata:
+  name: redis-config
+  namespace: dev

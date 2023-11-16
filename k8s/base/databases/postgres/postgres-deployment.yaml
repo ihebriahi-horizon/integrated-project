@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: postgres
+    app: postgres-deployment
   name: postgres
 spec:
   replicas: 1
