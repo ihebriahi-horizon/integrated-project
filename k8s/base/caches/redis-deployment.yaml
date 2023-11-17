@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: redis-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: redis
@@ -15,6 +15,9 @@ spec:
       containers:
         - name: redis
           image: redis:7-alpine
+          envFrom:
+            - configMapRef:
+                name: redis-config
           ports:
             - containerPort: 6379
           volumeMounts:

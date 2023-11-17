@@ -1,25 +1,5 @@
 apiVersion: v1
 kind: ConfigMap
-metadata:
-  name: backend-config
-data:
-  SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/horizon_homework
-  SPRING_DATASOURCE_USERNAME: horizon_admin
-  SPRING_DATASOURCE_PASSWORD: this_string_is_strong____duplicating_this_because_Im_lazy
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: postgres-config
-data:
-  PGPORT: "5432"
-  POSTGRES_DB: kubernetes-db
-  POSTGRES_HOST: postgres-service
-
----
-apiVersion: v1
-kind: ConfigMap
 data:
   redis.conf: |
     appendonly yes
