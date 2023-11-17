@@ -30,25 +30,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: postgres-service
-  name: postgres-service
-spec:
-  ports:
-    - name: pg-port
-      port: 5432
-      protocol: TCP
-      targetPort: 5432
-  selector:
-    app: postgres
-  type: LoadBalancer
-status:
-  loadBalancer: {}
-
----
-apiVersion: v1
-kind: Service
-metadata:
   name: redis-service
 spec:
   ports:
