@@ -23,7 +23,7 @@ export class AuthService {
       // Set authenticated subject to false if token is not present
       this.authenticated.next(false);
     }
-  }   
+  }
 
   login(email: string, password: string): Observable<HttpResponse<any>> {
     const request = {
@@ -36,7 +36,7 @@ export class AuthService {
         if (response.status === 200) {
           this.token = response.body['token'];
           // Save the token in session storage
-          this.appCookieService.set("jwtToken",response.body['token']);
+          this.appCookieService.set("jwtToken", response.body['token']);
           // Set the authentication status to true
           this.authenticated.next(true);
           // Return the response body as is
@@ -64,17 +64,17 @@ export class AuthService {
     );
   }
 
-  getToken():string {
+  getToken(): string {
     return this.appCookieService.get("jwtToken")
   }
 
   logout() {
     // Set the authentication status to false
     console.log("logged out")
-    this.token="";
+    this.token = "";
     this.appCookieService.remove("jwtToken");
     this.authenticated.next(false);
-    
+
     // Perform any other logout tasks such as clearing local storage
   }
 
