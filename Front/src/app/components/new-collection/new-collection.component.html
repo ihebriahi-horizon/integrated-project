@@ -8,28 +8,61 @@
     <div class="container cards d-flex flex-wrap justify-content-center">
       <ng-container *ngIf="store$ | async as store">
         <div *ngFor="let product of store.content; index as i">
-          <div class="card" *ngIf="i < (showAll ? store.content.length : displayCount)">
-            <img src="assets/images/products/{{product.productImagePath}}" alt="">
+          <div
+            class="card"
+            *ngIf="i < (showAll ? store.content.length : displayCount)"
+          >
+            <img
+              src="assets/images/products/{{ product.productImagePath }}"
+              alt=""
+            />
             <div class="data">
               <form method="POST">
-                <p name="title" class="fs-6 fw-light mt-2 mx-2">{{product.productName }} </p>
-                <input [(ngModel)]="product.productId" type="hidden" name="_id">
-                <input [(ngModel)]="product.quant" type="hidden" name="quant">
+                <p name="title" class="fs-6 fw-light mt-2 mx-2">
+                  {{ product.productName }}
+                </p>
+                <input
+                  [(ngModel)]="product.productId"
+                  type="hidden"
+                  name="_id"
+                />
+                <input [(ngModel)]="product.quant" type="hidden" name="quant" />
                 <strong>
-                  <p name="price" class="mx-2">{{product.productPrice.toFixed(2)}} DT </p>
+                  <p name="price" class="mx-2">
+                    {{ product.productPrice.toFixed(2) }} DT
+                  </p>
                 </strong>
                 <div class="input-group mb-3">
-                  <select [(ngModel)]="product.size" name="size{{product.productId}}" class="form-select"
-                    id="inputGroupSelect{{product.productId}}" required>
-                    <option name="size" disabled selected value="undefined">SELECT A SIZE</option>
+                  <select
+                    [(ngModel)]="product.size"
+                    name="size{{ product.productId }}"
+                    class="form-select"
+                    id="inputGroupSelect{{ product.productId }}"
+                    required
+                  >
+                    <option name="size" disabled selected value="undefined">
+                      SELECT A SIZE
+                    </option>
                     <option name="size" value="S">S</option>
                     <option name="size" value="M">M</option>
                     <option name="size" value="L">L</option>
                     <option name="size" value="XL">XL</option>
                     <option name="size" value="XXL">XXL</option>
                   </select>
-                  <button type="submit"
-                    (click)="addProductToCart(product.productId, product.productName, product.productPrice ,product.size, 1, product.productPrice)">ADD
+                  <button
+                    type="submit"
+                    (click)="
+                      addProductToCart(
+                        product.productId,
+                        product.productName,
+                        product.productPrice,
+                        product.size,
+                        1,
+                        product.productPrice
+                      )
+                    "
+                  >
+                    ADD
                   </button>
                 </div>
               </form>
@@ -39,41 +72,50 @@
       </ng-container>
     </div>
     <div class="wrapper2">
-      <button class="slide_from_left" (click)="showAll = !showAll; !showAll && scrollToTop()">{{ showAll ? 'SEE LESS' :
-        'SEE ALL' }}</button>
+      <button
+        class="slide_from_left"
+        (click)="showAll = !showAll; !showAll && scrollToTop()"
+      >
+        {{ showAll ? 'SEE LESS' : 'SEE ALL' }}
+      </button>
     </div>
   </div>
-
 
   <!--See more-->
   <main class="main mt-3 mb-5">
     <figure class="figure1">
-      <img class="figure-img"
+      <img
+        class="figure-img"
         src="https://cdn.shopify.com/s/files/1/0622/5245/0042/products/Delma_new_colors_-4_400x.jpg?v=1649266219"
-        alt="a kitten">
+        alt="a kitten"
+      />
       <div class="wrapper">
         <p class="fs-2 fw-light tit11">FESTIVITY</p>
         <button class="slide_from_left">SEE COLLECTION</button>
       </div>
     </figure>
     <figure class="figure2">
-      <img class="figure-img"
+      <img
+        class="figure-img"
         src="https://cdn.shopify.com/s/files/1/0622/5245/0042/products/BLUSA_PAULETTE_-1_400x.jpg?v=1645111478"
-        alt="a kitten">
+        alt="a kitten"
+      />
       <div class="wrapper">
         <p class="fs-2 fw-light tit11">CASUAL</p>
         <button class="slide_from_left">SEE PRODUCTS</button>
       </div>
     </figure>
     <figure class="figure3">
-      <img class="figure-img"
+      <img
+        class="figure-img"
         src="https://cdn.shopify.com/s/files/1/0622/5245/0042/products/MALORIE_VALERIE_04_400x.jpg?v=1644415010"
-        alt="a kitten">
+        alt="a kitten"
+      />
       <div class="wrapper">
         <p class="fs-2 fw-light tit11">HOMEWEAR</p>
         <button class="slide_from_left">SEE COLLECTION</button>
       </div>
-    </figure> 
+    </figure>
   </main>
 </div>
 <app-footer></app-footer>
