@@ -1,3 +1,4 @@
+
 ## Get pre-commit:
 
 To get them running for the first time (meaning doing this once), run:
@@ -20,7 +21,6 @@ $ mvn test
 ```
 
 #### you should see something similar:
-
 ```
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.166 s - in com.example.back.BackApplicationTests
 [INFO] Running com.example.back.ProductControllerTest
@@ -30,6 +30,12 @@ $ mvn test
 [INFO]
 [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
 [INFO]
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -37,3 +43,4 @@ $ mvn test
 [INFO] Finished at: 2023-11-16T16:44:52Z
 [INFO] ------------------------------------------------------------------------
 ```
+
