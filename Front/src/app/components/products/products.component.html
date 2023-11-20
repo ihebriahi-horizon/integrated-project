@@ -1,257 +1,396 @@
 <app-header></app-header>
 
 <div class="products-main" #container>
-    <div class="container mb-3 text-center mt-5">
-        <h2 id="nova" class="fs-2 fw-light">LIST OF PRODUCTS</h2>
-        <h3 class="fs-4 fw-light gender">
-            {{gender}}
-        </h3>
+  <div class="container mb-3 text-center mt-5">
+    <h2 id="nova" class="fs-2 fw-light">LIST OF PRODUCTS</h2>
+    <h3 class="fs-4 fw-light gender">
+      {{ gender }}
+    </h3>
+  </div>
+
+  <div class="row">
+    <div class="text-center">
+      <button class="show-filters">Show Filters</button>
     </div>
 
-
-    <div class="row">
-        <div class="text-center">
-            <button class="show-filters">Show Filters</button>
-        </div>
-
-        <aside class="product-filter">
-            <form method="GET" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-                <div class="card aside-main-card">
-                    <article class="filter-group">
-                        <div class="input-group">
-                            <input type="search" name="productName" formControlName="productName"
-                                class="form-control search-product" placeholder="Search">
-                        </div>
-                    </article>
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="{{getCurrentUrl()}}#" data-bs-toggle="collapse" data-bs-target="#collapse_1"
-                                aria-expanded="true" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Gender</h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_1">
-                            <div class="card-body">
-                                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                                    name="productFor" formControlName="productFor">
-                                    <table>
-                                        <tr>
-
-                                            <td>
-                                                <mat-radio-button class="example-radio-button" color="primary"
-                                                    value="Women" [checked]="gender.toUpperCase()=='WOMEN'?true:false">
-                                                    Women
-                                                </mat-radio-button>
-                                            </td>
-                                            <td>
-                                                <mat-radio-button class="example-radio-button" color="primary"
-                                                    value="Men" [checked]="gender.toUpperCase()=='MEN'?true:false">
-                                                    Men
-                                                </mat-radio-button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </mat-radio-group>
-                                <mat-radio-group aria-labelledby="example-radio-group-label"
-                                    class="example-radio-group">
-
-                                </mat-radio-group>
-
-                            </div> <!-- card-body.// -->
-                        </div>
-                    </article> <!-- filter-group  .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="{{getCurrentUrl()}}#" data-bs-toggle="collapse" data-bs-target="#collapse_1"
-                                aria-expanded="true" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Product type</h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_1">
-                            <div class="card-body">
-                                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
-                                    name="productType" formControlName="productType">
-                                    <table>
-                                        <tr *ngFor="let type of productTypes ; let i = index; let even = even">
-                                            <ng-container *ngIf="even">
-                                                <td>
-                                                    <mat-radio-button class="example-radio-button" color="primary"
-                                                        [value]="productTypes[i]">
-                                                        {{productTypes[i]}}
-                                                    </mat-radio-button>
-                                                </td>
-                                                <td *ngIf="productTypes[i+1]">
-                                                    <mat-radio-button class="example-radio-button" color="primary"
-                                                        [value]="productTypes[i+1]">
-                                                        {{productTypes[i+1]}}
-                                                    </mat-radio-button>
-                                                </td>
-                                            </ng-container>
-                                        </tr>
-                                    </table>
-                                </mat-radio-group>
-                                <mat-radio-group aria-labelledby="example-radio-group-label"
-                                    class="example-radio-group">
-
-                                </mat-radio-group>
-
-                            </div> <!-- card-body.// -->
-                        </div>
-                    </article> <!-- filter-group  .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse_2" aria-expanded="true"
-                                class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Colors </h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_2">
-                            <div class="card-body">
-                                <table>
-                                    <tr *ngFor="let color of colorsFormArray.controls; let i = index let even = even"
-                                        formArrayName="productColorSet">
-                                        <ng-container *ngIf="even">
-                                            <td>
-                                                <section class="example-section">
-                                                    <mat-checkbox class="example-margin" color="primary"
-                                                        [formControlName]="i">
-                                                        {{ productColors[i] }}
-                                                    </mat-checkbox>
-                                                </section>
-                                            </td>
-                                            <td *ngIf="productColors[i+1]">
-                                                <section class="example-section">
-                                                    <mat-checkbox class="example-margin" color="primary"
-                                                        [formControlName]="i+1">
-                                                        {{productColors[i+1] }}
-                                                    </mat-checkbox>
-                                                </section>
-                                            </td>
-                                        </ng-container>
-                                    </tr>
-                                </table>
-
-                            </div> <!-- card-body.// -->
-                        </div>
-                    </article> <!-- filter-group .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-bs-toggle="collapse" data-bs-target="#collapse_3" aria-expanded="true"
-                                class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Price range </h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_3">
-                            <div class="card-body">
-
-                                <div class="price-range-label">
-                                    <div class="left">{{minProductPrice}}</div>
-                                    <div class="right">{{maxProductPrice}}</div>
-                                </div>
-
-                                <mat-slider #slider class="price-range" min="{{minProductPrice.toString()}}"
-                                    max="{{maxProductPrice.toString()}}" discrete>
-                                    <input matSliderStartThumb id="sliderStart" name="productMinPrice"
-                                        formControlName="productMinPrice"
-                                        (input)="changeMinProductPrice($event.target)">
-                                    <input matSliderEndThumb id="sliderEnd" name="productMaxPrice"
-                                        formControlName="productMaxPrice" (input)="changeMaxProductPrice($event.target)"
-                                        value="300">
-                                </mat-slider>
-
-                                <div class="form-row">
-                                    <div class="form-group col">
-                                        <label>Min</label>
-                                        <input class="form-control" placeholder="{{minProductPrice}}DT" type="number"
-                                            name="productMinPrice" formControlName="productMinPrice"
-                                            (input)="changeMinProductPrice($event.target)">
-                                    </div>
-
-                                    <div class="form-group text-right col">
-                                        <label>Max</label>
-                                        <input class="form-control" placeholder="{{maxProductPrice}}DT" type="number"
-                                            name="productMaxPrice" formControlName="productMaxPrice"
-                                            (input)="changeMaxProductPrice($event.target)">
-                                    </div>
-                                </div> <!-- form-row.// -->
-
-                            </div><!-- card-body.// -->
-                        </div>
-                    </article> <!-- filter-group .// -->
-                    <article class="filter-group">
-                        <div class="apply-filter">
-                            <button type="submit" class="page-link dark">Filter</button>
-                            <button type="button" class="page-link dark" (click)="reset()">Reset</button>
-                        </div>
-                    </article> <!-- filter-group .// -->
-
-                </div> <!-- card.// -->
-            </form>
-        </aside>
-
-
-        <main class="product-list">
-            <div class="container cards d-flex flex-wrap ">
-                <ng-container *ngIf="store$ | async as store">
-                    <div *ngFor="let product of store.content; index as i">
-                        <div class="card" *ngIf="i < (showAll ? vetor.length : displayCount)">
-                            <img src="assets/images/products/{{product.productImagePath}}" alt="">
-                            <div class="data">
-                                <form method="POST">
-                                    <p name="title" class="fs-6 fw-light mt-2 mx-2">{{product.productName }} </p>
-                                    <input [(ngModel)]="product.productId" type="hidden" name="_id">
-                                    <input [(ngModel)]="product.quant" type="hidden" name="quant">
-                                    <strong>
-                                        <p name="price" class="mx-2">{{product.productPrice.toFixed(2)}} DT </p>
-                                    </strong>
-                                    <div class="input-group mb-3">
-                                        <select [(ngModel)]="product.size" name="size{{product.productId}}"
-                                            class="form-select" id="inputGroupSelect{{product.productId}}" required>
-                                            <option name="size" disabled selected value="undefined">SELECT A SIZE
-                                            </option>
-                                            <option name="size" value="S">S</option>
-                                            <option name="size" value="M">M</option>
-                                            <option name="size" value="L">L</option>
-                                            <option name="size" value="XL">XL</option>
-                                            <option name="size" value="XXL">XXL</option>
-                                        </select>
-                                        <button type="submit"
-                                            (click)="addProductToCart(product.productId, product.productName, product.productPrice ,product.size, 1, product.productPrice)">ADD
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
+    <aside class="product-filter">
+      <form method="GET" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="card aside-main-card">
+          <article class="filter-group">
+            <div class="input-group">
+              <input
+                type="search"
+                name="productName"
+                formControlName="productName"
+                class="form-control search-product"
+                placeholder="Search"
+              />
             </div>
-            <nav aria-label="Page navigation example" class="nav-pagination">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <button class="page-link dark" (click)="previousPage()"> Previous </button>
-                    </li>
-                    <ng-container *ngFor="let page of range()">
-                        <li class="page-item">
-                            <a class="page-link dark  {{page==currentPage+1?'current':''}}"
-                                [routerLink]="[getCurrentUrl()]" [queryParams]="{ gender: gender , page: page-1 }">{{
-                                page }}</a>
-                        </li>
+          </article>
+          <article class="filter-group">
+            <header class="card-header">
+              <a
+                href="{{ getCurrentUrl() }}#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse_1"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Gender</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_1">
+              <div class="card-body">
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  name="productFor"
+                  formControlName="productFor"
+                >
+                  <table>
+                    <tr>
+                      <td>
+                        <mat-radio-button
+                          class="example-radio-button"
+                          color="primary"
+                          value="Women"
+                          [checked]="
+                            gender.toUpperCase() == 'WOMEN' ? true : false
+                          "
+                        >
+                          Women
+                        </mat-radio-button>
+                      </td>
+                      <td>
+                        <mat-radio-button
+                          class="example-radio-button"
+                          color="primary"
+                          value="Men"
+                          [checked]="
+                            gender.toUpperCase() == 'MEN' ? true : false
+                          "
+                        >
+                          Men
+                        </mat-radio-button>
+                      </td>
+                    </tr>
+                  </table>
+                </mat-radio-group>
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                >
+                </mat-radio-group>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group  .// -->
+          <article class="filter-group">
+            <header class="card-header">
+              <a
+                href="{{ getCurrentUrl() }}#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse_1"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Product type</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_1">
+              <div class="card-body">
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  name="productType"
+                  formControlName="productType"
+                >
+                  <table>
+                    <tr
+                      *ngFor="
+                        let type of productTypes;
+                        let i = index;
+                        let even = even
+                      "
+                    >
+                      <ng-container *ngIf="even">
+                        <td>
+                          <mat-radio-button
+                            class="example-radio-button"
+                            color="primary"
+                            [value]="productTypes[i]"
+                          >
+                            {{ productTypes[i] }}
+                          </mat-radio-button>
+                        </td>
+                        <td *ngIf="productTypes[i + 1]">
+                          <mat-radio-button
+                            class="example-radio-button"
+                            color="primary"
+                            [value]="productTypes[i + 1]"
+                          >
+                            {{ productTypes[i + 1] }}
+                          </mat-radio-button>
+                        </td>
+                      </ng-container>
+                    </tr>
+                  </table>
+                </mat-radio-group>
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                >
+                </mat-radio-group>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group  .// -->
+          <article class="filter-group">
+            <header class="card-header">
+              <a
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse_2"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Colors</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_2">
+              <div class="card-body">
+                <table>
+                  <tr
+                    *ngFor="
+                      let color of colorsFormArray.controls;
+                      let i = index;
+                      let even = even
+                    "
+                    formArrayName="productColorSet"
+                  >
+                    <ng-container *ngIf="even">
+                      <td>
+                        <section class="example-section">
+                          <mat-checkbox
+                            class="example-margin"
+                            color="primary"
+                            [formControlName]="i"
+                          >
+                            {{ productColors[i] }}
+                          </mat-checkbox>
+                        </section>
+                      </td>
+                      <td *ngIf="productColors[i + 1]">
+                        <section class="example-section">
+                          <mat-checkbox
+                            class="example-margin"
+                            color="primary"
+                            [formControlName]="i + 1"
+                          >
+                            {{ productColors[i + 1] }}
+                          </mat-checkbox>
+                        </section>
+                      </td>
                     </ng-container>
-                    <li class="page-item">
-                        <button class="page-link dark" (click)="nextPage()"> Next </button>
-                    </li>
-                </ul>
-            </nav>
+                  </tr>
+                </table>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group .// -->
+          <article class="filter-group">
+            <header class="card-header">
+              <a
+                href="#"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapse_3"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Price range</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_3">
+              <div class="card-body">
+                <div class="price-range-label">
+                  <div class="left">{{ minProductPrice }}</div>
+                  <div class="right">{{ maxProductPrice }}</div>
+                </div>
 
-        </main>
-    </div>
+                <mat-slider
+                  #slider
+                  class="price-range"
+                  min="{{ minProductPrice.toString() }}"
+                  max="{{ maxProductPrice.toString() }}"
+                  discrete
+                >
+                  <input
+                    matSliderStartThumb
+                    id="sliderStart"
+                    name="productMinPrice"
+                    formControlName="productMinPrice"
+                    (input)="changeMinProductPrice($event.target)"
+                  />
+                  <input
+                    matSliderEndThumb
+                    id="sliderEnd"
+                    name="productMaxPrice"
+                    formControlName="productMaxPrice"
+                    (input)="changeMaxProductPrice($event.target)"
+                    value="300"
+                  />
+                </mat-slider>
+
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Min</label>
+                    <input
+                      class="form-control"
+                      placeholder="{{ minProductPrice }}DT"
+                      type="number"
+                      name="productMinPrice"
+                      formControlName="productMinPrice"
+                      (input)="changeMinProductPrice($event.target)"
+                    />
+                  </div>
+
+                  <div class="form-group text-right col">
+                    <label>Max</label>
+                    <input
+                      class="form-control"
+                      placeholder="{{ maxProductPrice }}DT"
+                      type="number"
+                      name="productMaxPrice"
+                      formControlName="productMaxPrice"
+                      (input)="changeMaxProductPrice($event.target)"
+                    />
+                  </div>
+                </div>
+                <!-- form-row.// -->
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group .// -->
+          <article class="filter-group">
+            <div class="apply-filter">
+              <button type="submit" class="page-link dark">Filter</button>
+              <button type="button" class="page-link dark" (click)="reset()">
+                Reset
+              </button>
+            </div>
+          </article>
+          <!-- filter-group .// -->
+        </div>
+        <!-- card.// -->
+      </form>
+    </aside>
+
+    <main class="product-list">
+      <div class="container cards d-flex flex-wrap">
+        <ng-container *ngIf="store$ | async as store">
+          <div *ngFor="let product of store.content; index as i">
+            <div
+              class="card"
+              *ngIf="i < (showAll ? vetor.length : displayCount)"
+            >
+              <img
+                src="assets/images/products/{{ product.productImagePath }}"
+                alt=""
+              />
+              <div class="data">
+                <form method="POST">
+                  <p name="title" class="fs-6 fw-light mt-2 mx-2">
+                    {{ product.productName }}
+                  </p>
+                  <input
+                    [(ngModel)]="product.productId"
+                    type="hidden"
+                    name="_id"
+                  />
+                  <input
+                    [(ngModel)]="product.quant"
+                    type="hidden"
+                    name="quant"
+                  />
+                  <strong>
+                    <p name="price" class="mx-2">
+                      {{ product.productPrice.toFixed(2) }} DT
+                    </p>
+                  </strong>
+                  <div class="input-group mb-3">
+                    <select
+                      [(ngModel)]="product.size"
+                      name="size{{ product.productId }}"
+                      class="form-select"
+                      id="inputGroupSelect{{ product.productId }}"
+                      required
+                    >
+                      <option name="size" disabled selected value="undefined">
+                        SELECT A SIZE
+                      </option>
+                      <option name="size" value="S">S</option>
+                      <option name="size" value="M">M</option>
+                      <option name="size" value="L">L</option>
+                      <option name="size" value="XL">XL</option>
+                      <option name="size" value="XXL">XXL</option>
+                    </select>
+                    <button
+                      type="submit"
+                      (click)="
+                        addProductToCart(
+                          product.productId,
+                          product.productName,
+                          product.productPrice,
+                          product.size,
+                          1,
+                          product.productPrice
+                        )
+                      "
+                    >
+                      ADD
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <nav aria-label="Page navigation example" class="nav-pagination">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <button class="page-link dark" (click)="previousPage()">
+              Previous
+            </button>
+          </li>
+          <ng-container *ngFor="let page of range()">
+            <li class="page-item">
+              <a
+                class="page-link dark  {{
+                  page == currentPage + 1 ? 'current' : ''
+                }}"
+                [routerLink]="[getCurrentUrl()]"
+                [queryParams]="{ gender: gender, page: page - 1 }"
+                >{{ page }}</a
+              >
+            </li>
+          </ng-container>
+          <li class="page-item">
+            <button class="page-link dark" (click)="nextPage()">Next</button>
+          </li>
+        </ul>
+      </nav>
+    </main>
+  </div>
 </div>
-
-
 
 <app-footer></app-footer>
 <app-top></app-top>
