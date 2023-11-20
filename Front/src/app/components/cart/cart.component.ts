@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartServicesService,
     @Inject(MAT_DIALOG_DATA) public content: string
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getCart();
@@ -42,13 +42,11 @@ export class CartComponent implements OnInit {
     });
 
     if (produto!.quant > 1) {
-
       produto!.quant = produto!.quant - 1;
       this.quantidade = produto!.quant * produto!.price;
       produto!.total = this.quantidade;
 
       this.totalFinal = this.totalFinal - produto!.price;
-
     }
   }
 
@@ -57,12 +55,19 @@ export class CartComponent implements OnInit {
     for (let i of this.cartData) {
       this.totalCompra = i.price + this.totalCompra;
       this.totalFinal = i.price + this.totalFinal;
-      console.log(this.totalCompra)
+      console.log(this.totalCompra);
     }
   }
 
-  deleteProduct(_id: number, name: string, price: number, size: number, quant: number, total: number) {
-    const products: Cart = { _id, name, price, size, quant, total }
+  deleteProduct(
+    _id: number,
+    name: string,
+    price: number,
+    size: number,
+    quant: number,
+    total: number
+  ) {
+    const products: Cart = { _id, name, price, size, quant, total };
 
     this.cartData = this.cartData.filter((i: any) => i._id != _id);
     let produto = this.cartData.find((p: any) => {
@@ -70,6 +75,5 @@ export class CartComponent implements OnInit {
     });
     this.cartService.deleteFromCart(products);
     this.totalFinal = this.totalFinal - produto!?.total;
-
   }
 }

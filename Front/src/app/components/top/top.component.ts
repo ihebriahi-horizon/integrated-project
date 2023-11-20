@@ -4,14 +4,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-top',
   templateUrl: './top.component.html',
-  styleUrls: ['./top.component.scss']
+  styleUrls: ['./top.component.scss'],
 })
 export class TopComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get currentUrl() {
     let url = this.router.url;

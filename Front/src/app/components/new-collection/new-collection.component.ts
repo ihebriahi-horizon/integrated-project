@@ -8,10 +8,9 @@ import { StoreServicesService } from 'src/app/shared/services/store-services.ser
 @Component({
   selector: 'app-new-collection',
   templateUrl: './new-collection.component.html',
-  styleUrls: ['./new-collection.component.scss']
+  styleUrls: ['./new-collection.component.scss'],
 })
 export class NewCollectionComponent implements OnInit {
-
   @ViewChild('container', { static: false })
   container!: ElementRef;
 
@@ -22,26 +21,33 @@ export class NewCollectionComponent implements OnInit {
   displayCount = 6;
   showAll = false;
 
-  constructor(private storeService: StoreServicesService,
-    private cartService: CartServicesService) { }
+  constructor(
+    private storeService: StoreServicesService,
+    private cartService: CartServicesService
+  ) {}
 
   ngOnInit(): void {
-    this.getStoreNewCollection()
+    this.getStoreNewCollection();
   }
   scrollToTop() {
     this.container.nativeElement.scrollIntoView(true);
   }
   getStoreNewCollection() {
-    this.store$ = this.storeService.getNewCollection()
+    this.store$ = this.storeService.getNewCollection();
     this.store$.subscribe((e) => {
-      this.vetor = e
-    })
-
+      this.vetor = e;
+    });
   }
 
-  addProductToCart(_id: number, name: string, price: number, size: number, quant: number, total: number) {
-    const products: Cart = { _id, name, price, size, quant, total }
-    this.cartService.addToCart(products)
-
+  addProductToCart(
+    _id: number,
+    name: string,
+    price: number,
+    size: number,
+    quant: number,
+    total: number
+  ) {
+    const products: Cart = { _id, name, price, size, quant, total };
+    this.cartService.addToCart(products);
   }
 }

@@ -28,27 +28,23 @@ import { TopComponent } from './components/top/top.component';
 import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
-
   {
     path: 'products',
-    component: ProductsComponent
+    component: ProductsComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
-  }
-  ,
+    component: LoginComponent,
+  },
   {
     path: 'about',
-    component: AboutComponent
-  }
-  ,
+    component: AboutComponent,
+  },
   {
     path: '',
-    component: NewCollectionComponent
-  }
+    component: NewCollectionComponent,
+  },
 ];
-
 
 @NgModule({
   declarations: [
@@ -60,7 +56,7 @@ const routes: Routes = [
     ProductsComponent,
     TopComponent,
     NewCollectionComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -79,9 +75,9 @@ const routes: Routes = [
     MatSidenavModule,
     MatSliderModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

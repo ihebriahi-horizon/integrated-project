@@ -2,8 +2,10 @@
   <div class="d-flex justify-content-between" *ngIf="cartData.length !== 0">
     <h1 class="fs-2 fw-light" mat-dialog-title>My Cart</h1>
     <span>
-      <strong class="btn btn-sm btn-outline-secondary">Total: {{ totalFinal }} DT
-      </strong></span>
+      <strong class="btn btn-sm btn-outline-secondary"
+        >Total: {{ totalFinal }} DT
+      </strong></span
+    >
   </div>
   <hr />
   <div mat-dialog-content>
@@ -35,8 +37,22 @@
                 </button>
               </td>
               <td>{{ cart.total }}</td>
-              <td>,
-                <button type="submit" class="btn btn-sm btn-danger" (click)="deleteProduct(cart._id, cart.name, cart.price, cart.size, cart.quant, cart.total)">
+              <td>
+                ,
+                <button
+                  type="submit"
+                  class="btn btn-sm btn-danger"
+                  (click)="
+                    deleteProduct(
+                      cart._id,
+                      cart.name,
+                      cart.price,
+                      cart.size,
+                      cart.quant,
+                      cart.total
+                    )
+                  "
+                >
                   Delete
                 </button>
               </td>
@@ -58,7 +74,6 @@
         <a class="btn btn-sm btn-danger" href="/">Go back to Store</a>
       </div>
     </ng-container>
-
 
     <div mat-dialog-actions *ngIf="cartData.length !== 0">
       <button class="btn btn-sm btn-secondary" mat-button mat-dialog-close>
