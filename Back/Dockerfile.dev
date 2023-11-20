@@ -5,7 +5,6 @@ WORKDIR /app
 COPY ./Back/ ./
 
 RUN chmod +x ./entrypoint.sh
-RUN chmod +x ./mvnw.sh
 
 # adds the Spring Boot DevTools dependency
 RUN sed -i '/<\/dependencies>/i \
