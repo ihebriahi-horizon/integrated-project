@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY ./Back/ ./
 
-RUN mvn dependency:go-offline
-
 RUN chmod +x ./entrypoint.sh
+RUN chmod +x ./mvnw.sh
+
+RUN mvn dependency:go-offline
