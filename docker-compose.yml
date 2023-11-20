@@ -49,10 +49,9 @@ services:
   ############### Our apps ###############
   backend:
     restart: unless-stopped
-    command: ./entrypoint.sh
     build:
       context: .
-      dockerfile: Back/Dockerfile
+      dockerfile: Back/Dockerfile.dev
     env_file:
       - .env
     volumes:
@@ -71,7 +70,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: Front/Dockerfile
+      dockerfile: Front/Dockerfile.dev
     env_file:
       - .env
     volumes:

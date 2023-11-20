@@ -1,0 +1,20 @@
+FROM maven:3.8.4-openjdk-17
+
+WORKDIR /app
+
+COPY ./Back/ ./
+
+RUN chmod +x ./entrypoint.sh
+RUN chmod +x ./mvnw.sh
+
+# adds the Spring Boot DevTools dependency
+RUN sed -i '/<\/dependencies>/i \
+    <dependency> \
+    <groupId>org.springframework.boot</groupId> \
+    <artifactId>spring-boot-devtools</artifactId> \
+    <optional>true</optional> \
+    </dependency>' pom.xml
+
+RUN mvn dependency:go-offline
+
+CMD ["./mvnw", "spring-boot:run"]
