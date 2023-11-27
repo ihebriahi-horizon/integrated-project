@@ -84,7 +84,7 @@ services:
     restart: unless-stopped
     build:
       context: .
-      dockerfile: Front/Dockerfile
+      dockerfile: Front/Dockerfile.dev
     env_file:
       - .env
     volumes:
