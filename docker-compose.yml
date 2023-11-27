@@ -15,6 +15,19 @@ version: "3.8"
 # LEAVE IT BETTER THEN YOU FOUND IT.
 
 services:
+ 
+  nginx:
+    restart: unless-stopped
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - backend
+      - frontend
+    networks:
+    - horizon-net
   ############### Datastores ###############
   redis:
     image: redis:7-alpine
@@ -29,6 +42,7 @@ services:
       retries: 5
     networks:
       - horizon-net
+
   db:
     restart: unless-stopped
     image: postgres:15-alpine
@@ -56,8 +70,8 @@ services:
       - .env
     volumes:
       - ./Back:/app
-    ports:
-      - 8080:8080
+    expose:
+      - 8080
     depends_on:
       redis:
         condition: service_healthy
@@ -75,17 +89,17 @@ services:
       - .env
     volumes:
       - ./Front:/app
-    ports:
-      - 80:80
+    expose:
+      - 8000
     depends_on:
       - backend
     networks:
       - horizon-net
 
 volumes:
-  postgres-data:
-    driver: local
   redis-data:
+    driver: local
+  postgres-data:
     driver: local
 
 networks:

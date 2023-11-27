@@ -6,6 +6,8 @@ COPY ./Front/ ./
 
 RUN npm set strict-ssl false
 
+RUN rm package-lock.json
+
 RUN npm i --legacy-peer-deps
 
 RUN npm run build

@@ -8,7 +8,7 @@ import { AppCookieService } from 'src/app/shared/services/AppCookieService';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/auth';
+  private baseUrl = `http://${window.location.host}/api/auth`;
   private authenticated = new BehaviorSubject<boolean>(false);
   private token: string = '403';
 
