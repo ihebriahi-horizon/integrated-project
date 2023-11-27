@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/auth/services/auth-service.service';
   providedIn: 'root',
 })
 export class StoreServicesService {
-  private readonly url = 'http://localhost:8080/api';
+  private readonly url = `http://${window.location.host}/api`;
 
   status!: string;
   errorMessage: any;
@@ -15,7 +15,7 @@ export class StoreServicesService {
   constructor(
     private http: HttpClient,
     private authService: AuthService
-  ) {}
+  ) { }
 
   getProducts(page: number) {
     return this.http.get<any>(`${this.url}/products?page=${page}`);
