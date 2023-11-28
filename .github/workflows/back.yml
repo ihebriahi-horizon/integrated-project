@@ -2,7 +2,7 @@ name: Back Microservice CI/CD
 
 on:
   push:
-    branches-ignore:
+    branches:
       - '*'
 
 jobs:

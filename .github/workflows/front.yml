@@ -2,7 +2,7 @@ name: Front Microservice CI/CD
 
 on:
   push:
-    branches-ignore:
+    branches:
       - '*'
       
 jobs:
