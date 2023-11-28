@@ -1,14 +1,12 @@
 name: Front Microservice CI/CD
-on:
-  pull_request:
-    paths:
-      - "Front/**"
-    branches:
-      - develop
-      - main
 
+on:
+  push:
+    branches:
+      - '*'
+      
 jobs:
-  sonarqube:
+  sonarqube_front:
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -22,7 +20,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-  unit_test:
+  unit_test_front:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -44,8 +42,8 @@ jobs:
         run: docker-compose run --rm frontend npm run test
         working-directory: ${{ github.workspace }}
 
-  push_to_registry:
-    needs: unit_test
+  push_front_to_registry:
+    needs: unit_test_front
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
