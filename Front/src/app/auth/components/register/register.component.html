@@ -1,0 +1,159 @@
+<app-header></app-header>
+
+<form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Firstname</mat-label>
+          <input
+            matInput
+            placeholder="First Name"
+            name="userFirstname"
+            formControlName="userFirstname"
+            required
+          />
+          <mat-error
+            *ngIf="form['userFirstname'].invalid && form['userFirstname'].touched"
+          >
+            Please enter a valid first name.
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            placeholder="Last Name"
+            name="userLastname"
+            formControlName="userLastname"
+            required
+          />
+          <mat-error
+            *ngIf="form['userLastname'].invalid && form['userLastname'].touched"
+          >
+            Please enter a valid last name.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Gender</mat-label>
+          <mat-select name="userGender" formControlName="userGender" required>
+            <mat-option value="0"> Male </mat-option>
+            <mat-option value="1"> Female </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form['userGender'].invalid && form['userGender'].touched">
+            Please choose your gender.
+          </mat-error>
+        </mat-form-field>
+        
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Age</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Age"
+            name="userAge"
+            formControlName="userAge"
+            min="7"
+            max="120"
+            required
+          />
+          <mat-error *ngIf="form['userAge'].invalid && form['userAge'].touched">
+            Please enter a valid age.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            name="userEmail"
+            formControlName="userEmail"
+            required
+          />
+          <mat-error *ngIf="form['userEmail'].invalid && form['userEmail'].touched">
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            placeholder="Address"
+            name="userAddress"
+            formControlName="userAddress"
+            required
+          />
+          <mat-error *ngIf="form['userAddress'].invalid && form['userAddress'].touched">
+            Please enter a valid address.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            name="userPassword"
+            formControlName="userPassword"
+            required
+          />
+          <mat-error
+            *ngIf="form['userPassword'].invalid && form['userPassword'].touched"
+          >
+            Password must be at least 5 characters long.
+          </mat-error>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            type="confirmPassword"
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            formControlName="confirmPassword"
+            required
+          />
+          <mat-error
+            *ngIf="
+              form['confirmPassword'].invalid && form['confirmPassword'].touched
+            "
+          >
+            Passwords do not match.
+          </mat-error>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div class="example-button-row">
+    <button class="dark" type="submit" [disabled]="registerForm.invalid">
+      Register
+    </button>
+  </div>
+  <div class="signup-link">
+    Already have an account? <a routerLink="/login">Login here</a>
+  </div>
+</form>

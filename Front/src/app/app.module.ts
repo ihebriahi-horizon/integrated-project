@@ -16,6 +16,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -26,6 +27,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { TopComponent } from './components/top/top.component';
 import { CartComponent } from './components/cart/cart.component';
+import { RegisterComponent } from './auth/components/register/register.component';
 
 const routes: Routes = [
   {
@@ -35,6 +37,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'about',
@@ -57,6 +63,7 @@ const routes: Routes = [
     TopComponent,
     NewCollectionComponent,
     CartComponent,
+    RegisterComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -76,6 +83,7 @@ const routes: Routes = [
     MatSliderModule,
     MatIconModule,
     MatCardModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -68,6 +68,29 @@ export class AuthService {
       );
   }
 
+  register(registerForm: any): Observable<HttpResponse<any>> {
+    const request = registerForm;
+    return this.http
+      .post(`${this.baseUrl}/register`, request, { observe: 'response' })
+      .pipe(
+        map((response) => {
+          // Check if the response status is 200
+          if (response.status === 200) {
+            return response;
+          } else {
+            // If the response status is not 200, throw an error
+            throw new Error('An error occurred while registring you account');
+          }
+        }),
+        catchError((error) => {
+          return throwError({
+            status: 'ERROR',
+            message: 'An error occurred while registring you account',
+          });
+        })
+      );
+  }
+
   getToken(): string {
     return this.appCookieService.get('jwtToken');
   }
