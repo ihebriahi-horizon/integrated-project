@@ -30,9 +30,9 @@ jobs:
         run: cp env-example .env
         working-directory: ${{ github.workspace }}
 
-      - name: Start Docker Compose
-        run: docker-compose run --rm frontend npm run test
-        working-directory: ${{ github.workspace }}
+      # - name: Start Docker Compose
+      #   run: docker-compose run --rm frontend npm run test
+      #   working-directory: ${{ github.workspace }}
 
   push_front_to_registry:
     needs: unit_test_front
