@@ -15,7 +15,6 @@ version: "3.8"
 # LEAVE IT BETTER THEN YOU FOUND IT.
 
 services:
- 
   nginx:
     restart: unless-stopped
     build: ./nginx
@@ -27,7 +26,7 @@ services:
       - backend
       - frontend
     networks:
-    - horizon-net
+      - horizon-net
   ############### Datastores ###############
   redis:
     image: redis:7-alpine

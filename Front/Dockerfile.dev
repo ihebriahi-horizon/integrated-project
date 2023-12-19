@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY ./Front/ ./
 
-RUN npm set strict-ssl false
-
 RUN npm i --legacy-peer-deps
 
 RUN npm run build
+
+ENV CHROME_BIN=/usr/bin/chromium
 
 CMD ["npm", "run", "start"]

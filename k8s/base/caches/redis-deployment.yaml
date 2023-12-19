@@ -4,7 +4,7 @@ metadata:
   name: redis-statefulset
 spec:
   serviceName: "redis"
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: redis
@@ -36,7 +36,7 @@ spec:
         name: redis-storage
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: "manual"
+        storageClassName: "do-block-storage"
         resources:
           requests:
             storage: 1Gi
