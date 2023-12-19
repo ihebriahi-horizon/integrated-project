@@ -1,13 +1,17 @@
 FROM node:16
 
+RUN apt-get update && apt-get install -y \
+    chromium \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY ./Front/ ./
 
-RUN npm set strict-ssl false
-
 RUN npm i --legacy-peer-deps
 
 RUN npm run build
+
+ENV CHROME_BIN=/usr/bin/chromium
 
 CMD ["npm", "run", "start"]
