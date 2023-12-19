@@ -14,29 +14,29 @@ spec:
         app: redis
     spec:
       containers:
-      - name: redis
-        image: redis:7-alpine
-        envFrom:
-        - configMapRef:
-            name: redis-config
-        ports:
-        - containerPort: 6379
-        volumeMounts:
-        - name: redis-storage
-          mountPath: /data
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
+        - name: redis
+          image: redis:7-alpine
+          envFrom:
+            - configMapRef:
+                name: redis-config
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-storage
+              mountPath: /data
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
   volumeClaimTemplates:
-  - metadata:
-      name: redis-storage
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "manual"
-      resources:
-        requests:
-          storage: 1Gi
+    - metadata:
+        name: redis-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "manual"
+        resources:
+          requests:
+            storage: 1Gi
