@@ -15,6 +15,7 @@ spec:
       containers:
         - name: backend
           image: ghcr.io/ihebriahi-horizon/integrated-project/main_back:latest
+          imagePullPolicy: Always
           envFrom:
             - secretRef:
                 name: backend-secret
