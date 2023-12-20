@@ -22,18 +22,18 @@ spec:
           ports:
             - containerPort: 6379
           volumeMounts:
-            - name: redis-storage
+            - name: redis-data
               mountPath: /data
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "500m"
-            requests:
               memory: "256Mi"
               cpu: "250m"
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
   volumeClaimTemplates:
     - metadata:
-        name: redis-storage
+        name: redis-data
       spec:
         accessModes: ["ReadWriteOnce"]
         storageClassName: "do-block-storage"

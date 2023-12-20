@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -12,12 +12,14 @@ spec:
       labels:
         app: frontend
     spec:
+      imagePullSecrets:
+        - name: github-registry-secret
       containers:
         - name: frontend
           image: ghcr.io/ihebriahi-horizon/integrated-project/main_front:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           resources:
             limits:
               memory: "512Mi"

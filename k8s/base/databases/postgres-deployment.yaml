@@ -20,18 +20,18 @@ spec:
             - secretRef:
                 name: postgres-secret
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: pg-data
+            - mountPath: /var/lib/postgresql/data/pgdata
+              name: postgres-data
           resources:
             limits:
-              memory: "512Mi"
-              cpu: "500m"
-            requests:
               memory: "256Mi"
               cpu: "250m"
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
   volumeClaimTemplates:
     - metadata:
-        name: redis-storage
+        name: postgres-data
       spec:
         accessModes: ["ReadWriteOnce"]
         storageClassName: "do-block-storage"
